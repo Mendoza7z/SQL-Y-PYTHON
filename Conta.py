@@ -3,7 +3,7 @@
 
 # Mi funcion 
 def precioNormal(precio_bruto,precio_neto,IVA,):
-    precio_neto = precio_bruto / 1.12
+    precio_neto = precio_Siniva / 1.12
     resultado = precio_neto * IVA
     return precio_neto, resultado
 
