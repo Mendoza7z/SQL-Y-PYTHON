@@ -20,8 +20,8 @@ print(f"Producto: {Producto}\nProducto Siniva: Q{precio_Siniva:f}\nPrecio neto: 
 
 
 # Ejemplo 2
-def precioNormal1(precio_Siniva, precio_neto, IVA2):
-    precio_neto = precio_Siniva / (1+IVA2)
+def precioNormal1(precio_Siniva, precio_neto, IVA):
+    precio_neto = precio_Siniva / 1.12
     resultado = precio_neto * IVA     
     return precio_neto, resultado
 
@@ -30,9 +30,9 @@ Producto = "bolsas de plastico 100ml"
 precio_Siniva = 8
 precio_neto = 1.12
 IVA = 0.12
-precio_neto, precio_normal2 = precioNormal1(precio_Siniva, precio_neto, IVA)
+precio_neto, precio_normal = precioNormal(precio_Siniva, precio_neto, IVA)
 
-print(f"Producto2: {Producto}\nProducto Siniva: Q{precio_Siniva:f}\nPrecio neto2: Q{precio_neto:f}\nIVA2: Q{precio_normal2:f}")
+print(f"Producto: {Producto}\nProducto Siniva: Q{precio_Siniva:f}\nPrecio neto: Q{precio_neto:f}\nIVA: Q{precio_normal:f}")
 
 
 
