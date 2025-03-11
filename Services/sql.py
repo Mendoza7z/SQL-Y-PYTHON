@@ -1,33 +1,31 @@
-def conectar (Consulta_sql):
-    #Modulo para concetar con base de datos sql
-    import mysql.connector
-    
+#sql.py
+import mysql.connector
+def conectar(consulta_sql):
+
     config = {
         'user': 'uo40mzioulugyjaz',
         'password':'wIgkiIACRRyTNTMcMVGk',
         'host':'bh8tn2ilol2yqduxxovm-mysql.services.clever-cloud.com',
-        'database':'bh8tn2ilol2yqduxxovm ',
+        'database':'bh8tn2ilol2yqduxxovm',
         'raise_on_warnings': True
     }
     
     
     #Conectar a la base de datos
     try: 
-        conexion = mysql.connector.connect(**config)
-        print("Conexion exitosa a la base de datos")
-        
-        #Objeto para crear consultas 
-        consultas = conexion.cursor()
-        
-        #Funcion para agregar la consulta sql 
-        consultas.execute(Consulta_sql)
+       conexion = mysql.connector.connect(**config)
+       print("Conexión exitosa a la base de datos.")
 
-        #Almacena el resultao de la consulta SQL
-        resultado = consultas.fetchall()
+      #Objeto para crear consultas
+       consultas = conexion.cursor()
 
-        return resultado
-    
-    #Respuesta si al conectar da error
+       #Función para agregar la consulta SQL
+       consultas.execute(consulta_sql)
+       #Almacenamos el resultado de la consulta SQL
+       resultado = consultas.fetchall()
+
+       return resultado
+     
+    #Respuesta si al conectar da error 
     except mysql.connector.Error as err:
-        print(f"Error al conectar a la base de datos: {err}")
-
+       print(f"Error al conectar a la base de datos: {err}")

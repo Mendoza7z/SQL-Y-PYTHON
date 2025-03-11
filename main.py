@@ -1,7 +1,7 @@
+# Importamos la librería
 import tkinter
-from .views.headerView import header_view
-from .views.formView import form_view
-
+from views.headerView import header_view
+from views.formView import form_view
 
 # Nombramos nuestra variable e importamos la librería e 
 # utilizamos "tk" para crear una ventana 
