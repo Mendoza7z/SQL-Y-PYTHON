@@ -19,4 +19,5 @@ ventana.rowconfigure(1, weight=4)
 #Paneles de la ventana 
 header_view(ventana)
 form_view(ventana)
+
 ventana.mainloop()

@@ -3,10 +3,10 @@ import tkinter
 from views.datosView import actualizarTabla
 
 def form_view(ventana):
-    formulario_panel = tkinter.Frame(ventana, bg="Grey", width="300", height="600") 
+    formulario_panel = tkinter.Frame(ventana, bg="blue", width="300", height="600") 
     formulario_panel.grid(row=1, column=0, sticky="nsew")
 
-    tabla_panel = tkinter.Frame(ventana, bg="Orange", width="700", height="600") 
+    tabla_panel = tkinter.Frame(ventana, bg="white", width="700", height="600") 
     tabla_panel.grid(row=1, column=1, sticky="nsew")
 
     titulo = tkinter.Label(formulario_panel, text="Formulario de registro")
@@ -19,7 +19,7 @@ def form_view(ventana):
         respuesta = entry.get()
         print(respuesta)
 
-        actualizarTabla(f"SELECT {respuesta} FROM Carros", tabla_panel)
+    actualizarTabla(f"SELECT * FROM datos_generales", tabla_panel)
 
     boton = tkinter.Button(formulario_panel, text="Enviar", command=funcion_boton)
     boton.pack(pady=5)

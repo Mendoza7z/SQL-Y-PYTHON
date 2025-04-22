@@ -1,17 +1,18 @@
-#sql.py
 import mysql.connector
 def conectar(consulta_sql):
+ 
 
+#Configuración de la conexión/ credenciales
     config = {
         'user': 'uo40mzioulugyjaz',
-        'password':'wIgkiIACRRyTNTMcMVGk',
-        'host':'bh8tn2ilol2yqduxxovm-mysql.services.clever-cloud.com',
-        'database':'bh8tn2ilol2yqduxxovm',
+        'password': 'wIgkiIACRRyTNTMcMVGk',
+        'host': 'bh8tn2ilol2yqduxxovm-mysql.services.clever-cloud.com',
+        'database': 'bh8tn2ilol2yqduxxovm',
         'raise_on_warnings': True
     }
-    
-    
-    #Conectar a la base de datos
+
+
+# Conectar a la base de datos 
     try: 
        conexion = mysql.connector.connect(**config)
        print("Conexión exitosa a la base de datos.")
