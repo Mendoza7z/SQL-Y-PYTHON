@@ -20,4 +20,4 @@ ventana.rowconfigure(1, weight=4)
 header_view(ventana)
 form_view(ventana)
 
-ventana.mainloop()
+ventana.mainloop() 

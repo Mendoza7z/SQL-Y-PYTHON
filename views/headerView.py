@@ -1,16 +1,17 @@
 import tkinter
+from PIL import Image, ImageTk
 
 def header_view(ventana):
-    # Panel superior con altura 10
-    header_panel = tkinter.Frame(ventana, bg="white", height=10)
-    header_panel.grid(row=0, column=0, columnspan=2, sticky="nsew")
-    header_panel.grid_propagate(False)
+    hader_panel = tkinter.Frame(ventana, bg="white", width=1000, height=60)
+    hader_panel.grid(row=0,column=0,columnspan=2,sticky="nsew")
 
-    # Logo ajustado a un tamaño intermedio
-    logo = tkinter.PhotoImage(file="logo.png")
-    logo = logo.subsample(2, 2)  
-    logo_label = tkinter.Label(header_panel, image=logo, bg="white")
+    ing = Image.open("logo.png")
+    ing = ing.resize((75,75))
+    logo = ImageTk.PhotoImage(ing)
+
+    logo_label = tkinter.Label(hader_panel, image=logo, bg="white")
     logo_label.image = logo
-    logo_label.pack(side="right", padx=5, pady=1) 
+    logo_label.pack()
 
-    return header_panel
+    logo = ImageTk.PhotoImage(Image.open("logo.png"))
+
