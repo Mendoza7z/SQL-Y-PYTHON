@@ -22,8 +22,8 @@ def form_view(ventana):
     boton = tkinter.Button(formulario_panel, text="Enviar", command=funcion_boton)
     boton.pack(pady=5)
 
-    #HORA
-    titulo = tkinter.Label(formulario_panel, text="Filtrar por hora")
+#------------------------------------------------------------------------------------------------------
+    titulo = tkinter.Label(formulario_panel, text="Formulario de hora")
     titulo.pack(pady=5)
 
     entry_hora1 = tkinter.Entry(formulario_panel)
@@ -32,7 +32,7 @@ def form_view(ventana):
     entry_hora2 = tkinter.Entry(formulario_panel)
     entry_hora2.pack(pady=5)
 
-    def filtrar_por_hora():
+    def filtrar_hora():
         h1 = entry_hora1.get().strip()
         h2 = entry_hora2.get().strip()
 
@@ -53,9 +53,45 @@ def form_view(ventana):
         consulta = f"SELECT * FROM datos_generales WHERE hora_entrada BETWEEN '{h1_formato}' AND '{h2_formato}'"
         actualizarTabla(consulta, tabla_panel)
 
-    boton_hora = tkinter.Button(formulario_panel, text="Enviar", command=filtrar_por_hora)
+    boton_hora = tkinter.Button(formulario_panel, text="Enviar", command=filtrar_hora)
     boton_hora.pack(pady=5)
 
     actualizarTabla(f"SELECT * FROM datos_generales", tabla_panel)
+
+
+#------------------------------------------------------------------------------------------------------    
+    titulo_genero = tkinter.Label(formulario_panel, text="Formulario de genero")
+    titulo_genero.pack(pady=5)
+
+    entry_genero = tkinter.Entry(formulario_panel)
+    entry_genero.pack(pady=5)
+
+    def filtrar_genero():
+        genero = entry_genero.get().strip().capitalize()
+        if genero not in ["Masculino", "Femenino"]:
+            tkinter.messagebox.showerror("Error", "Ingrese 'Masculino' o 'Femenino'")
+            return
+
+        consulta = f"SELECT * FROM datos_generales WHERE genero = '{genero}'"
+        actualizarTabla(consulta, tabla_panel)
+
+    boton_genero = tkinter.Button(formulario_panel, text="Enviar", command=filtrar_genero)
+    boton_genero.pack(pady=5)
+
+#------------------------------------------------------------------------------------------------------
+    titulo_modelo = tkinter.Label(formulario_panel, text="Formulario de modelo")
+    titulo_modelo.pack(pady=5)
+
+    entry_modelo = tkinter.Entry(formulario_panel)
+    entry_modelo.pack(pady=5)
+
+    def filtrar_modelo():
+        modelo = entry_modelo.get().strip().capitalize()
+        consulta = f"SELECT * FROM datos_generales WHERE modelo_transporte = '{modelo}'"
+        actualizarTabla(consulta, tabla_panel)
+
+    boton_modelo = tkinter.Button(formulario_panel, text="Enviar", command=filtrar_modelo)
+    boton_modelo.pack(pady=5)
+
 
     return formulario_panel

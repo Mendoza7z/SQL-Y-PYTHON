@@ -14,4 +14,3 @@ def header_view(ventana):
     logo_label.pack()
 
     logo = ImageTk.PhotoImage(Image.open("logo.png"))
-
