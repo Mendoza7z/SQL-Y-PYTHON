@@ -2,6 +2,7 @@ import tkinter
 from tkinter import messagebox  # <- ¡importar esto!
 from views.datosView import actualizarTabla
 
+#---------------------------------------------------------------------------------------------------
 def form_view(ventana):
     formulario_panel = tkinter.Frame(ventana, bg="Green", width="300", height="600") 
     formulario_panel.grid(row=1, column=0, sticky="nsew")
@@ -23,6 +24,7 @@ def form_view(ventana):
     boton.pack(pady=5)
 
 #------------------------------------------------------------------------------------------------------
+    #Formulario de las horas
     titulo = tkinter.Label(formulario_panel, text="Formulario de hora")
     titulo.pack(pady=5)
 
@@ -60,6 +62,7 @@ def form_view(ventana):
 
 
 #------------------------------------------------------------------------------------------------------    
+    #Formulario de los generos
     titulo_genero = tkinter.Label(formulario_panel, text="Formulario de genero")
     titulo_genero.pack(pady=5)
 
@@ -79,6 +82,7 @@ def form_view(ventana):
     boton_genero.pack(pady=5)
 
 #------------------------------------------------------------------------------------------------------
+    #Formulario de los modelos
     titulo_modelo = tkinter.Label(formulario_panel, text="Formulario de modelo")
     titulo_modelo.pack(pady=5)
 
