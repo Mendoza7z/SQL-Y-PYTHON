@@ -1,46 +1,44 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import messagebox
+from Services.sql import conectar
+from views.datosView import actualizarTabla
 
-# Crear la ventana principal
-ventana = tk.Tk()
-ventana.title("Entrada")
-ventana.geometry("900x600")
+def entrada_view(ventana):
+    formulario_entrada = tk.Frame(ventana, bg="Green", width=200, height=600)
+    formulario_entrada.grid(row=1, column=0, sticky="nsew")
 
-# Barra superior
-barra_superior = tk.Frame(ventana, height=30, bg="lightgray")
-barra_superior.pack(fill="x")
+    tabla_panel = tk.Frame(ventana, bg="white")
+    tabla_panel.grid(row=1, column=1, sticky="nsew")
 
-# Contenedor principal
-contenedor = tk.Frame(ventana)
-contenedor.pack(fill="both", expand=True)
+    campos = ["Nombre", "Genero", "Placa", "Color", "Modelo", "Hora de Entrada", "Hora de Salida", "Tarifa", "Carwash"]
+    entradas = {}
 
-# Sección izquierda con 6 cuadros
-izquierda = tk.Frame(contenedor, width=300, bg="white", padx=10, pady=10)
-izquierda.pack(side="left", fill="both")
+    for campo in campos:
+        label = tk.Label(formulario_entrada, text=campo, bg="orange", fg="black", font=("Arial", 10), width=20)
+        label.pack(pady=(8, 0))
+        entry = tk.Entry(formulario_entrada, font=("Arial", 10), width=22)
+        entry.pack(pady=(0, 5))
+        entradas[campo] = entry
 
-# Crear los 6 cuadros (como botones o etiquetas vacías)
-for fila in range(1):
-    for columna in range(3):
-        cuadro = tk.Label(izquierda, text=" ", bg="white", relief="solid", width=10, height=5)
-        cuadro.grid(row=fila, column=columna, padx=5, pady=5)
+    def filtrar_por_campos():
+        condiciones = []
+        for campo, entry in entradas.items():
+            valor = entry.get().strip()
+            if valor:
+                # Se convierte el nombre del campo a minúsculas y reemplaza espacios por guiones bajos para coincidir con columnas SQL
+                columna_sql = campo.lower().replace(" ", "_")
+                condiciones.append(f"{columna_sql} LIKE '%{valor}%'")
 
-# Sección derecha con título, campos y botón
-derecha = tk.Frame(contenedor, padx=20, pady=10)
-derecha.pack(side="left", fill="both", expand=True)
+        if not condiciones:
+            messagebox.showerror("Error", "Por favor llena al menos un campo para buscar.")
+            return
 
-# Título
-titulo = tk.Label(derecha, text="Título", font=("Arial", 12))
-titulo.pack(anchor="w", pady=(0, 10))
+        where_clause = " AND ".join(condiciones)
+        consulta = f"SELECT * FROM datos_generales WHERE {where_clause}"
+        actualizarTabla(consulta, tabla_panel)
 
-# Crear 5 campos de entrada
-entradas = []
-for _ in range(5):
-    entrada = tk.Entry(derecha, width=40)
-    entrada.pack(pady=5)
-    entradas.append(entrada)
+    tk.Button(formulario_entrada, text="Guardar", command=filtrar_por_campos, width=20, height=2).pack(pady=10)
 
-# Botón pequeño
-boton = tk.Button(derecha, text="  ", width=10)
-boton.pack(anchor="e", pady=10)
+    actualizarTabla("SELECT * FROM datos_generales", tabla_panel)
 
-ventana.mainloop()
+    return formulario_entrada
